@@ -47,12 +47,15 @@ public class DizionarioGraphController {
 
     @FXML
     void doGradoMax(ActionEvent event) {
-
     }
 
     @FXML
     void doGrafo(ActionEvent event) {
-
+    try {
+    model.createGraph( Integer.parseInt(txtLettere.getText()));
+    }catch(NumberFormatException e) {
+    	txtResult.appendText("Inserire un valore corretto!");
+    }
     }
 
     @FXML
