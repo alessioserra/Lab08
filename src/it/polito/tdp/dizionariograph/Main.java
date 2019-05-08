@@ -19,7 +19,7 @@ public class Main extends Application {
 			DizionarioGraphController controller = loader.getController();
 			controller.setModel(model);
 			
-			Scene scene = new Scene(root, 400, 400);
+			Scene scene = new Scene(root, 398, 344);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			primaryStage.setScene(scene);
