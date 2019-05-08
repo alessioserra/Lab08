@@ -1,7 +1,6 @@
 package it.polito.tdp.dizionariograph.model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.jgrapht.Graph;
@@ -65,8 +64,13 @@ public class Model {
 
 	public List<String> displayNeighbours(String parolaInserita) {
 
-		System.err.println("displayNeighbours -- TODO");
-		return new ArrayList<String>();
+		List<String> listaVicini = new ArrayList<String>();
+		
+		for (String s : listaParole) {
+			if (grafo.containsEdge(parolaInserita, s)) listaVicini.add(s);
+		}
+		
+		return listaVicini;
 	}
 
 	public int findMaxDegree() {

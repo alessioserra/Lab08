@@ -1,5 +1,6 @@
 package it.polito.tdp.dizionariograph;
 
+import java.util.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -66,6 +67,9 @@ public class DizionarioGraphController {
     @FXML
     void doTrovaVicini(ActionEvent event) {
 
+    	List<String> vicini = model.displayNeighbours(txtCercare.getText());
+    	txtResult.appendText(vicini.toString());
+    	
     }
 
     @FXML
