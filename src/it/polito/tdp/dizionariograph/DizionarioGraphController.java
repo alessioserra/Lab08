@@ -16,6 +16,11 @@ public class DizionarioGraphController {
 	Model model = new Model();
 	
 	public void setModel(Model model) {
+		//Bottonidisabilitati all'avvio
+	    btnGradoMax.setDisable(true);
+	    btnTrovaVicini.setDisable(true);
+	    txtCercare.setDisable(true);
+	    
 		this.model=model;
 	}
 
@@ -48,12 +53,21 @@ public class DizionarioGraphController {
 
     @FXML
     void doGradoMax(ActionEvent event) {
+    	int gradomax=model.findMaxDegree();
+    	txtResult.appendText("Grado massimo del grafo = "+gradomax);
     }
 
     @FXML
     void doGrafo(ActionEvent event) {
+
     try {
+    	
     model.createGraph( Integer.parseInt(txtLettere.getText()));
+    
+    //Abilito i bottoni
+    btnGradoMax.setDisable(false);
+    btnTrovaVicini.setDisable(false);
+    txtCercare.setDisable(false);
     }catch(NumberFormatException e) {
     	txtResult.appendText("Inserire un valore corretto!");
     }
@@ -61,14 +75,28 @@ public class DizionarioGraphController {
 
     @FXML
     void doReset(ActionEvent event) {
-
+    	
+    	//Disabilito i bottoni quando resetto
+    	btnGradoMax.setDisable(true);
+	    btnTrovaVicini.setDisable(true);
+	    txtCercare.setDisable(true);
+	    
+	    //Cancello campi di testo
+    	txtResult.clear();
+    	txtLettere.clear();
+    	txtCercare.clear();
     }
 
     @FXML
     void doTrovaVicini(ActionEvent event) {
+    	
+    	txtResult.clear();
 
     	List<String> vicini = model.displayNeighbours(txtCercare.getText());
-    	txtResult.appendText(vicini.toString());
+    	
+    	if (vicini.isEmpty()) txtResult.appendText("Nessun risultato trovato!");
+    	for(String s : vicini) txtResult.appendText(s+"\n");
+    	txtResult.appendText("Grado del nodo = "+vicini.size()+"\n");
     	
     }
 

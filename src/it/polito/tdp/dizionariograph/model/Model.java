@@ -74,7 +74,11 @@ public class Model {
 	}
 
 	public int findMaxDegree() {
-		System.err.println("findMaxDegree -- TODO");
-		return -1;
+		
+		int risultato=0;
+		for (String s : listaParole) {
+			if (displayNeighbours(s).size()>risultato) risultato=displayNeighbours(s).size();
+		}
+		return risultato;
 	}
 }
